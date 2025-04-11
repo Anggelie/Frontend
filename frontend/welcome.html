@@ -1,0 +1,19 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Bienvenida</title>
+</head>
+<body>
+    <h1 id="welcomeMessage">¡Bienvenido!</h1>
+    <p><a href="login.html">Cerrar sesión</a></p>
+
+    <script>
+        const params = new URLSearchParams(window.location.search);
+        const user = params.get("user");
+
+        if (user) {
+            document.getElementById("welcomeMessage").textContent = `¡Bienvenido, ${user}! 🎉`;
+        }
+    </script>
+</body>
+</html>

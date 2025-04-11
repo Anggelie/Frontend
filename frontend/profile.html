@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <title>Perfil de Usuario</title>
+    <style>
+        body {
+            font-family: "Segoe UI", sans-serif;
+            background-color: #f0f0f0;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            padding-top: 80px;
+        }
+
+        h1 {
+            font-size: 32px;
+            color: #333;
+            margin-bottom: 20px;
+        }
+
+        .profile-box {
+            background-color: #fff;
+            padding: 25px;
+            border-radius: 12px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+            width: 320px;
+            text-align: center;
+        }
+
+        .profile-box p {
+            font-size: 18px;
+            color: #444;
+            margin-bottom: 10px;
+        }
+
+        .error {
+            color: red;
+            font-weight: bold;
+            font-size: 16px;
+        }
+
+        nav {
+            margin-bottom: 20px;
+        }
+
+        nav a {
+            text-decoration: none;
+            color: #4CAF50;
+            font-weight: bold;
+            margin: 0 10px;
+        }
+    </style>
+</head>
+<body>
+
+    <nav>
+        <a href="index.html">Inicio</a>
+        <a href="login.html">Login</a>
+        <a href="register.html">Registro</a>
+        <a href="logout.html">Logout</a>
+    </nav>
+
+    <h1>Perfil de Usuario</h1>
+    <div class="profile-box" id="profileBox">
+        <p>Cargando perfil...</p>
+    </div>
+
+    <script>
+        const params = new URLSearchParams(window.location.search);
+        const userID = params.get("id");
+        const box = document.getElementById("profileBox");
+
+        if (!userID) {
+            box.innerHTML = `<p class="error"> No se especificó un ID de usuario</p>`;
+        } else {
+            fetch(`http://localhost:3000/profile/${userID}`)
+                .then(response => response.json())
+                .then(data => {
+                    if (data.success) {
+                        box.innerHTML = `
+                            <p><strong>ID:</strong> ${data.data.id}</p>
+                            <p><strong>Usuario:</strong> ${data.data.username}</p>
+                        `;
+                    } else {
+                        box.innerHTML = `<p class="error"> ${data.error.message}</p>`;
+                    }
+                })
+                .catch(() => {
+                    box.innerHTML = `<p class="error"> Error al obtener los datos</p>`;
+                });
+        }
+    </script>
+</body>
+</html>
