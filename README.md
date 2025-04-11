@@ -1,6 +1,6 @@
 #  Login Web App 
 
-Este es un proyecto de autenticación web que permite a los usuarios registrarse, iniciar sesión, ver su perfil y cerrar sesión. El backend está construido con Go y el frontend con HTML, CSS y JavaScript.
+Esta tarea de autenticación web que permite a los usuarios registrarse, iniciar sesión, ver su perfil y cerrar sesión. El backend está construido con Go y el frontend con HTML, CSS y JavaScript.
 
 ## Funcionalidades
 
